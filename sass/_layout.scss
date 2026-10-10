@@ -121,6 +121,8 @@
   .surfaces { grid-template-columns: 1fr 1fr; }
 }
 
+.attribution { margin: 1rem 0 0; color: var(--muted); font-size: 0.85rem; }
+
 .slices {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));

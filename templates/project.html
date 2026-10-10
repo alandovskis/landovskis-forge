@@ -35,6 +35,8 @@
         </figure>
         {% endfor %}
       </div>
+      {% set osm_link = '<a href="https://www.openstreetmap.org/copyright">' ~ trans(key="attribution_osm_link") ~ '</a>' %}
+      <p class="attribution">{{ trans(key="attribution_osm") | replace(from="{link}", to=osm_link) | safe }}</p>
     </div>
   </section>
 

@@ -82,6 +82,8 @@ def main(public):
             problems.append(f"{name}: <html lang> is {page.lang!r}, expected {lang!r}")
         if page.h1 != 1:
             problems.append(f"{name}: expected exactly one <h1>, found {page.h1}")
+        if "projects" in name and not any("openstreetmap.org/copyright" in h for h in page.hrefs):
+            problems.append(f"{name}: no visible OpenStreetMap attribution link")
         if "projects" not in name and 'id="about"' not in path.read_text(encoding="utf-8"):
             problems.append(f"{name}: missing #about section")
         for tag in re.findall(r"<img[^>]*>", path.read_text(encoding="utf-8")):

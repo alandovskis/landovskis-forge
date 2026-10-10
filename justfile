@@ -18,8 +18,11 @@ test-scripts:
 check-i18n:
     python3 scripts/check_i18n.py
 
+check-contrast:
+    python3 scripts/check_contrast.py
+
 # Everything that must pass before merging
-check: test-scripts check-i18n
+check: test-scripts check-i18n check-contrast
     zola check
     zola build
     python3 scripts/smoke_test.py public

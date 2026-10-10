@@ -1,0 +1,20 @@
+<article class="card card--split">
+  <div>
+    <p class="eyebrow">{{ trans(key="featured_label") }}</p>
+    <h2>{{ project.title }}</h2>
+    <p class="lede">{{ project.description }}</p>
+    <ul class="tags">
+      {% for tag in project.extra.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+    </ul>
+    <div class="actions">
+      <a class="btn btn--primary" href="{{ project.permalink }}">{{ trans(key="cta_read_more") }}</a>
+    </div>
+  </div>
+  <figure class="window">
+    <div class="window__bar" aria-hidden="true"><span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span></div>
+    {% set shot_path = project.extra.hero_image %}
+    {% set shot_alt = project.extra.hero_alt %}
+    {% set shot_width = 1000 %}
+    {% include "partials/shot.html" %}
+  </figure>
+</article>

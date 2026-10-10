@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<article>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow reveal">{{ trans(key="featured_label") }}</p>
+      <h1 class="reveal">{{ page.title }}</h1>
+      <p class="lede reveal">{{ page.description }}</p>
+      <ul class="tags reveal">
+        {% for tag in page.extra.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+      </ul>
+      <div class="reveal">{% include "partials/project_actions.html" %}</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>{{ page.extra.problem_title }}</h2>
+      <p>{{ page.extra.problem_text }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>{{ page.extra.surfaces_title }}</h2>
+      <p>{{ page.extra.surfaces_intro }}</p>
+      <div class="surfaces">
+        {% for s in page.extra.surfaces %}
+        <figure class="window">
+          <div class="window__bar" aria-hidden="true"><span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span></div>
+          {% set shot_path = s.image %}
+          {% set shot_alt = s.alt %}
+          {% include "partials/shot.html" %}
+          <figcaption><strong>{{ s.title }}</strong> — {{ s.text }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>{{ page.extra.architecture_title }}</h2>
+      <p>{{ page.extra.architecture_caption }}</p>
+      <ul class="slices">
+        {% for slice in page.extra.slices %}
+        <li class="slice"><code>{{ slice.name }}</code><span>{{ slice.text }}</span></li>
+        {% endfor %}
+      </ul>
+      <p class="slice-shared"><code>{{ page.extra.shared_title }}</code> {{ page.extra.shared_text }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap prose-body">
+      {{ page.content | safe }}
+    </div>
+  </section>
+</article>
+{% endblock content %}

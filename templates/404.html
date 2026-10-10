@@ -7,8 +7,8 @@
   <h2 lang="fr">{{ trans(key="not_found_title", lang="fr") }}</h2>
   <p lang="fr">{{ trans(key="not_found_text", lang="fr") }}</p>
   <ul class="link-list">
-    <li><a href="{{ get_url(path='@/_index.md') }}" hreflang="en" lang="en">{{ trans(key="lang_name", lang="en") }}</a></li>
-    <li><a href="{{ get_url(path='@/_index.fr.md') }}" hreflang="fr" lang="fr">{{ trans(key="lang_name", lang="fr") }}</a></li>
+    <li><a href="{{ get_url(path='@/_index.md', lang='en') }}" hreflang="en" lang="en">{{ trans(key="lang_name", lang="en") }}</a></li>
+    <li><a href="{{ get_url(path='@/_index.md', lang='fr') }}" hreflang="fr" lang="fr">{{ trans(key="lang_name", lang="fr") }}</a></li>
   </ul>
 </section>
 {% endblock content %}

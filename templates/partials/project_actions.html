@@ -1,0 +1,6 @@
+<div class="actions">
+  {% if config.extra.cityloom_demo_enabled %}
+  <a class="btn btn--primary" href="{{ config.extra.cityloom_demo_url }}">{{ trans(key="cta_try_it") }}</a>
+  {% endif %}
+  <a class="btn{% if not config.extra.cityloom_demo_enabled %} btn--primary{% endif %}" href="{{ config.extra.source_url }}">{{ trans(key="cta_source") }}</a>
+</div>

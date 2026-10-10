@@ -45,6 +45,8 @@
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ page_description }}">
   <meta property="og:locale" content="{{ trans(key='og_locale') }}">
+  {% set og_image = resize_image(path="assets/screenshots/map.png", width=1200, height=630, op="fill", format="png") %}
+  <meta property="og:image" content="{{ og_image.url }}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="alternate" type="application/atom+xml" title="{{ trans(key='site_name') }}" href="{{ feed_url }}">
   <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
@@ -56,6 +58,7 @@
     <div class="wrap site-header__inner">
       <a class="brand" href="{{ home_url }}"><span class="brand__mark" aria-hidden="true">▚</span>{{ trans(key="site_name") }}</a>
       <nav class="site-nav" aria-label="{{ trans(key='nav_main') }}">
+        <a href="{{ get_url(path='@/projects/cityloom.md') }}">{{ trans(key="nav_cityloom") }}</a>
         {% if ctx %}
         {% for t in ctx.translations %}
         {% if t.lang != lang %}

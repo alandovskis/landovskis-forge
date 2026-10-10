@@ -16,6 +16,8 @@ ROOT = Path(__file__).resolve().parent.parent
 PAGES = [
     ("index.html", "en", "fr/index.html"),
     ("fr/index.html", "fr", "index.html"),
+    ("projects/cityloom/index.html", "en", "fr/projects/cityloom/index.html"),
+    ("fr/projects/cityloom/index.html", "fr", "projects/cityloom/index.html"),
 ]
 REQUIRED_FILES = ["404.html", "sitemap.xml", "robots.txt", "atom.xml", "fr/atom.xml", "main.css"]
 
@@ -80,8 +82,11 @@ def main(public):
             problems.append(f"{name}: <html lang> is {page.lang!r}, expected {lang!r}")
         if page.h1 != 1:
             problems.append(f"{name}: expected exactly one <h1>, found {page.h1}")
-        if 'id="about"' not in path.read_text(encoding="utf-8"):
+        if "projects" not in name and 'id="about"' not in path.read_text(encoding="utf-8"):
             problems.append(f"{name}: missing #about section")
+        for tag in re.findall(r"<img[^>]*>", path.read_text(encoding="utf-8")):
+            if "width=" not in tag or "height=" not in tag or "alt=" not in tag:
+                problems.append(f"{name}: <img> without width, height and alt: {tag[:60]}")
         for needed in ("en", "fr", "x-default"):
             if needed not in page.alternates:
                 problems.append(f"{name}: missing hreflang={needed} alternate")
@@ -100,7 +105,7 @@ def main(public):
             if not (link.startswith(("http://", "https://", "#"))):
                 problems.append(f"404.html: relative URL {link!r} breaks at nested paths")
         for name, _, _ in PAGES:
-            if name in pages and pages[name].canonical not in page.hrefs:
+            if "projects" not in name and name in pages and pages[name].canonical not in page.hrefs:
                 problems.append(f"404.html: does not link to {name}")
 
     for html in sorted(public.rglob("*.html")):

@@ -9,8 +9,15 @@
       {% if config.extra.cityloom_demo_enabled %}
       <a class="btn btn--primary" href="{{ config.extra.cityloom_demo_url }}">{{ trans(key="cta_try_it") }}</a>
       {% endif %}
-      <a class="btn{% if not config.extra.cityloom_demo_enabled %} btn--primary{% endif %}" href="#about">{{ trans(key="about_label") }}</a>
+      <a class="btn{% if not config.extra.cityloom_demo_enabled %} btn--primary{% endif %}" href="{{ get_url(path='@/projects/cityloom.md') }}">{{ trans(key="cta_see_cityloom") }}</a>
     </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    {% set project = get_page(path="projects/cityloom" ~ lang_suffix ~ ".md") %}
+    {% include "partials/project_card.html" %}
   </div>
 </section>
 

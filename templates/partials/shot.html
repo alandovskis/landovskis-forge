@@ -1,0 +1,4 @@
+{# Expects shot_path, shot_alt and optionally shot_width (default 1200) to be set by the includer. #}
+{% set width = shot_width | default(value=1200) %}
+{% set img = resize_image(path=shot_path, width=width, op="fit_width", format="webp", quality=82) %}
+<img src="{{ img.url }}" width="{{ img.width }}" height="{{ img.height }}" alt="{{ shot_alt }}" loading="lazy" decoding="async">

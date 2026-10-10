@@ -1,7 +1,8 @@
 """A tiny parser for the TOML subset this site uses.
 
 Only `[table]` / `[[table]]` headers and one-line `key = value` pairs are supported, which is all
-the translation tables and front matter need. Values are returned as raw text. Anything else
+the translation tables and front matter need. Each `[[table]]` entry becomes its own table named
+`table[0]`, `table[1]`, ... so entries are compared one by one. Values are returned as raw text. Anything else
 (multi-line strings, multi-line arrays) is rejected loudly so that parity checks never silently
 skip content.
 """
@@ -16,6 +17,7 @@ def parse(text, source):
     """Return {table: {key: raw value}}; top-level keys live under the table name ''."""
     tables = {"": {}}
     current = ""
+    array_counts = {}
     for number, line in enumerate(text.splitlines(), 1):
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
@@ -25,6 +27,10 @@ def parse(text, source):
         table = TABLE_RE.match(line)
         if table:
             current = table.group(1)
+            if stripped.startswith("[["):
+                index = array_counts.get(current, 0)
+                array_counts[current] = index + 1
+                current = f"{current}[{index}]"
             tables.setdefault(current, {})
             continue
         key = KEY_RE.match(line)

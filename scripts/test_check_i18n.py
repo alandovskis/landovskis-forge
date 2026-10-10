@@ -44,6 +44,11 @@ class TomliteTests(unittest.TestCase):
         tables = tomlite.front_matter(text, "p.md")
         self.assertEqual(tables["extra"]["k"], '"v"')
 
+    def test_array_of_tables_entries_are_kept_apart(self):
+        tables = tomlite.parse('[[a.b]]\nk = "1"\n[[a.b]]\nk = "2"\n', "f")
+        self.assertEqual(tables["a.b[0]"]["k"], '"1"')
+        self.assertEqual(tables["a.b[1]"]["k"], '"2"')
+
     def test_front_matter_requires_block(self):
         with self.assertRaises(ValueError):
             tomlite.front_matter("no front matter", "p.md")
@@ -113,6 +118,23 @@ class ContentTests(unittest.TestCase):
         problems = check_i18n.check_content(self.root)
         self.assertEqual(len(problems), 1)
         self.assertIn("no English counterpart", problems[0])
+
+    def test_missing_array_entry_in_french(self):
+        two = '+++\ntitle = "T"\n[[extra.items]]\nk = "a"\n[[extra.items]]\nk = "b"\n+++\n'
+        one = '+++\ntitle = "T"\n[[extra.items]]\nk = "a"\n+++\n'
+        write(self.root, "a.md", two)
+        write(self.root, "a.fr.md", one)
+        problems = check_i18n.check_content(self.root)
+        self.assertEqual(len(problems), 1)
+        self.assertIn("extra.items[1]", problems[0])
+
+    def test_key_missing_in_one_array_entry(self):
+        en = '+++\ntitle = "T"\n[[extra.items]]\nk = "a"\nj = "x"\n[[extra.items]]\nk = "b"\n+++\n'
+        fr = '+++\ntitle = "T"\n[[extra.items]]\nk = "a"\n[[extra.items]]\nk = "b"\nj = "y"\n+++\n'
+        write(self.root, "a.md", en)
+        write(self.root, "a.fr.md", fr)
+        problems = check_i18n.check_content(self.root)
+        self.assertEqual(len(problems), 2)
 
     def test_front_matter_key_mismatch(self):
         write(self.root, "a.md", PAGE)

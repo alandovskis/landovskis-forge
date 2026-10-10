@@ -31,3 +31,6 @@ check: test-scripts check-i18n check-contrast
 a11y:
     zola build --base-url http://127.0.0.1:4173 --output-dir target/a11y --force
     node scripts/a11y.mjs target/a11y
+
+# What CI runs
+ci: check a11y

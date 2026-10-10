@@ -28,6 +28,12 @@ just ci        # check + a11y, exactly what CI runs
   `node scripts/capture_screenshots.mjs <path to the Cityloom checkout>`. It uses Cityloom's own
   e2e fixtures, so no large map data is needed.
 
+## Bumping tool versions
+
+Zola and just are pinned in `.github/workflows/ci.yml` and `deploy.yml` (`tool: just@X,zola@Y`);
+Dependabot does not track them. To bump, change both files, run `just ci` locally with the same
+versions, and commit. `scripts/test_workflows.py` fails if a tool is left unpinned.
+
 ## Turning on the live demo
 
 When <https://cityloom.app> is live: set `cityloom_demo_enabled = true` under `[extra]` in

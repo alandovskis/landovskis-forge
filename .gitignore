@@ -1,0 +1,7 @@
+public/
+target/
+node_modules/
+static/processed_images/
+__pycache__/
+.DS_Store
+.superpowers/

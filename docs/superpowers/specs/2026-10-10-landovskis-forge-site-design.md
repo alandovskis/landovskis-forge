@@ -15,7 +15,7 @@ it, try it, and contact the author, in a couple of minutes and in either English
 | Topic | Decision |
 |---|---|
 | Generator | **Zola** (Rust static site generator, single binary, plain HTML/CSS output, no WASM). Leptos SSG was rejected as disproportionate for a content site. |
-| Hosting | GitHub Pages, custom domain `landovskisforge.ca` (via `static/CNAME`). |
+| Hosting | GitHub Pages, custom domain `landovskisforge.ca`, set in repository Settings → Pages (GitHub ignores a `CNAME` file for Actions-based deploys, so none is committed). |
 | Languages | Bilingual **EN/FR**, English at `/`, French at `/fr/`. French is written as **fr-CA** (`.ca` domain, Montréal-focused project). |
 | Visual direction | High-tech, **dark forge shell**. Cityloom is shown in its own light UI inside framed screenshots. |
 | Live demo | `cityloom.app`, **not live yet** (no response as of 2026-10-10). The "Try it" link is driven by one config value so it can be enabled without template changes. |
@@ -131,7 +131,7 @@ until then.
 config.toml
 content/{_index.md, _index.fr.md, projects/cityloom.md, projects/cityloom.fr.md}
 templates/  sass/
-static/{fonts, CNAME}
+static/fonts
 assets/screenshots/              # PNG sources, processed by Zola
 scripts/                         # i18n parity, contrast, smoke, a11y checks (+ tests)
 justfile

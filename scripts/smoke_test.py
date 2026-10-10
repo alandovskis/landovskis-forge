@@ -113,6 +113,9 @@ def main(public):
     for html in sorted(public.rglob("*.html")):
         page = load(html)
         rel = html.relative_to(public)
+        for href in page.hrefs:
+            if "gitlab" in href.lower():
+                problems.append(f"{rel}: links to GitLab ({href}); this site links to GitHub only")
         if page.scripts:
             problems.append(f"{rel}: contains <script>; the site must work without JavaScript")
         if not demo_enabled and demo_url and any(h.rstrip("/") == demo_url.rstrip("/") for h in page.hrefs):

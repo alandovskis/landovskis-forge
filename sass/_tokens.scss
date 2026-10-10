@@ -1,0 +1,17 @@
+:root {
+  --bg: #0b0e13;
+  --surface: #11161d;
+  --surface-2: #171d26;
+  --line: #263040;
+  --text: #e6eaf0;
+  --muted: #9aa5b5;
+  --accent: #ff8a3d;
+  --accent-ink: #0b0e13;
+
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius: 0.5rem;
+  --wrap: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}

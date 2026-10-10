@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow reveal">{{ section.extra.hero_kicker }}</p>
+    <h1 class="reveal">{{ section.title }}</h1>
+    <p class="lede reveal">{{ section.extra.hero_pitch }}</p>
+    <div class="actions reveal">
+      {% if config.extra.cityloom_demo_enabled %}
+      <a class="btn btn--primary" href="{{ config.extra.cityloom_demo_url }}">{{ trans(key="cta_try_it") }}</a>
+      {% endif %}
+      <a class="btn{% if not config.extra.cityloom_demo_enabled %} btn--primary{% endif %}" href="{{ get_url(path='@/projects/cityloom.md') }}">{{ trans(key="cta_see_cityloom") }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    {% set project = get_page(path="projects/cityloom" ~ lang_suffix ~ ".md") %}
+    {% include "partials/project_card.html" %}
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <p class="eyebrow">{{ trans(key="about_label") }}</p>
+    <h2>{{ section.extra.about_title }}</h2>
+    <p>{{ section.extra.about_text }}</p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">{{ trans(key="contact_label") }}</p>
+    {% include "partials/contact_links.html" %}
+  </div>
+</section>
+{% endblock content %}

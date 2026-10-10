@@ -121,6 +121,11 @@ def main(public):
             problems.append(f"{name}: no visible OpenStreetMap attribution link")
         if "projects" not in name and 'id="about"' not in path.read_text(encoding="utf-8"):
             problems.append(f"{name}: missing #about section")
+        if "projects" not in name:
+            if 'id="other"' not in path.read_text(encoding="utf-8"):
+                problems.append(f"{name}: missing #other section")
+            if "https://github.com/alandovskis/ansible" not in pages[name].hrefs:
+                problems.append(f"{name}: no link to the ansible repository")
         for tag in re.findall(r"<img[^>]*>", path.read_text(encoding="utf-8")):
             if "width=" not in tag or "height=" not in tag or "alt=" not in tag:
                 problems.append(f"{name}: <img> without width, height and alt: {tag[:60]}")

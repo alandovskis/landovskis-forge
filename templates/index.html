@@ -21,6 +21,25 @@
   </div>
 </section>
 
+<section class="section" id="other">
+  <div class="wrap">
+    <p class="eyebrow">{{ trans(key="other_label") }}</p>
+    <h2>{{ section.extra.other_title }}</h2>
+    <ul class="other-list">
+      {% for item in section.extra.other %}
+      <li class="other-item">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.text }}</p>
+        <ul class="tags">
+          {% for tag in item.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+        </ul>
+        <a href="{{ item.url }}">{{ trans(key="cta_view_repo") }}<span class="visually-hidden"> — {{ item.name }}</span></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
 <section class="section" id="about">
   <div class="wrap">
     <p class="eyebrow">{{ trans(key="about_label") }}</p>

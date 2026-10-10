@@ -11,6 +11,7 @@
 ## Source
 
 - [Cityloom sur GitHub](https://github.com/alandovskis/cityloom): Code source de Cityloom, écrit en Rust et compilé en WebAssembly avec Leptos.
+- [ansible sur GitHub](https://github.com/alandovskis/ansible): Playbook qui provisionne mes machines de développement sous macOS et Debian/Ubuntu; l'intégration continue l'exécute sur Ubuntu 26.04 et vérifie qu'une seconde exécution ne change rien.
 - [Alex Landovskis sur GitHub](https://github.com/alandovskis): Profil et autres dépôts.
 
 ## Optional

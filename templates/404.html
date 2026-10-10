@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block page_title %}{{ trans(key="not_found_title") }} · {{ trans(key="site_name") }}{% endblock page_title %}
+{% block content %}
+<section class="wrap prose not-found">
+  <h1 lang="en">{{ trans(key="not_found_title", lang="en") }}</h1>
+  <p lang="en">{{ trans(key="not_found_text", lang="en") }}</p>
+  <h2 lang="fr">{{ trans(key="not_found_title", lang="fr") }}</h2>
+  <p lang="fr">{{ trans(key="not_found_text", lang="fr") }}</p>
+  <ul class="link-list">
+    <li><a href="{{ get_url(path='@/_index.md') }}" hreflang="en" lang="en">{{ trans(key="lang_name", lang="en") }}</a></li>
+    <li><a href="{{ get_url(path='@/_index.fr.md') }}" hreflang="fr" lang="fr">{{ trans(key="lang_name", lang="fr") }}</a></li>
+  </ul>
+</section>
+{% endblock content %}

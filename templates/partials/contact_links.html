@@ -1,0 +1,6 @@
+<ul class="link-list">
+  {% if config.extra.contact_email %}
+  <li><a href="mailto:{{ config.extra.contact_email }}">{{ trans(key="contact_email_link") }}</a></li>
+  {% endif %}
+  <li><a href="{{ config.extra.github_url }}" rel="me">{{ trans(key="contact_github_link") }}</a></li>
+</ul>

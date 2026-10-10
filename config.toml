@@ -1,0 +1,67 @@
+base_url = "https://landovskisforge.ca"
+title = "Landovskis Forge"
+description = "Web software in Rust and WebAssembly, designed, built and tested end to end."
+default_language = "en"
+compile_sass = true
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+[link_checker]
+# cityloom.app is not live yet; remove this prefix once it is.
+skip_prefixes = ["https://cityloom.app"]
+internal_level = "error"
+external_level = "warn"
+
+[extra]
+github_url = "https://github.com/alandovskis"
+source_url = "https://github.com/alandovskis/cityloom"
+cityloom_demo_url = "https://cityloom.app"
+cityloom_demo_enabled = false
+contact_email = ""
+
+[translations]
+site_name = "Landovskis Forge"
+site_description = "Web software in Rust and WebAssembly, designed, built and tested end to end."
+skip_to_content = "Skip to content"
+nav_main = "Main"
+nav_cityloom = "Cityloom"
+lang_name = "English"
+cta_see_cityloom = "See Cityloom"
+cta_try_it = "Try it"
+cta_source = "Source on GitHub"
+cta_read_more = "Read the case study"
+featured_label = "01 / Project"
+about_label = "02 / About"
+contact_label = "03 / Contact"
+contact_email_link = "Email"
+contact_github_link = "GitHub"
+footer_copy = "© {year} Landovskis Forge"
+not_found_title = "Page not found"
+not_found_text = "That page does not exist. Start from the home page."
+og_locale = "en_CA"
+
+[languages.fr]
+title = "Landovskis Forge"
+description = "Des logiciels web en Rust et WebAssembly, conçus, développés et testés de bout en bout."
+generate_feeds = true
+
+[languages.fr.translations]
+site_name = "Landovskis Forge"
+site_description = "Des logiciels web en Rust et WebAssembly, conçus, développés et testés de bout en bout."
+skip_to_content = "Passer au contenu"
+nav_main = "Principale"
+nav_cityloom = "Cityloom"
+lang_name = "Français"
+cta_see_cityloom = "Découvrir Cityloom"
+cta_try_it = "L'essayer"
+cta_source = "Code source sur GitHub"
+cta_read_more = "Lire l'étude de cas"
+featured_label = "01 / Projet"
+about_label = "02 / À propos"
+contact_label = "03 / Contact"
+contact_email_link = "Courriel"
+contact_github_link = "GitHub"
+footer_copy = "© {year} Landovskis Forge"
+not_found_title = "Page introuvable"
+not_found_text = "Cette page n'existe pas. Repartez de la page d'accueil."
+og_locale = "fr_CA"

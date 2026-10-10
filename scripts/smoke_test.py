@@ -59,12 +59,47 @@ def load(path):
     return page
 
 
+LINK_RE = re.compile(r"\[[^\]]+\]\(([^)\s]+)\)")
+
+
+def check_llms(public, base_url):
+    """llms.txt (and its French twin) exist, follow the format, link to each other and only to
+    pages that were really built."""
+    problems = []
+    for name, other in (("llms.txt", "fr/llms.txt"), ("fr/llms.txt", "llms.txt")):
+        path = public / name
+        if not path.is_file():
+            problems.append(f"missing built file: {name}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        if not lines or not lines[0].startswith("# "):
+            problems.append(f"{name}: must start with an H1 title")
+        if not any(line.startswith("> ") for line in lines):
+            problems.append(f"{name}: needs a '> ' summary line")
+        urls = LINK_RE.findall(text)
+        if base_url.rstrip("/") + "/" + other not in urls:
+            problems.append(f"{name}: does not link to its counterpart {other}")
+        for url in urls:
+            if "gitlab" in url.lower():
+                problems.append(f"{name}: links to GitLab ({url})")
+            if not url.startswith(base_url):
+                continue
+            rel = url[len(base_url):].lstrip("/")
+            target = public / (rel + "index.html" if rel == "" or rel.endswith("/") else rel)
+            if not target.is_file():
+                problems.append(f"{name}: links to {url}, which was not built")
+    return problems
+
+
 def main(public):
     problems = []
     config = tomlite.parse((ROOT / "config.toml").read_text(encoding="utf-8"), "config.toml")
     extra = config.get("extra", {})
     demo_url = extra.get("cityloom_demo_url", "").strip('"')
     demo_enabled = extra.get("cityloom_demo_enabled", "false") == "true"
+
+    problems += check_llms(public, config[""]["base_url"].strip('"'))
 
     for name in REQUIRED_FILES:
         if not (public / name).is_file():

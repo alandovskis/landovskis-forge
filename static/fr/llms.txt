@@ -1,0 +1,19 @@
+# Landovskis Forge
+
+> Portfolio d'Alex Landovskis : logiciels web en Rust et WebAssembly, conçus, développés et testés de bout en bout. Le seul projet pour l'instant est Cityloom, « Streetmix à l'échelle de la ville » : les résidents composent et comparent des scénarios de rues pour toute la ville. Le site est bilingue, en français et en anglais.
+
+## Site
+
+- [Accueil](https://landovskisforge.ca/fr/): Aperçu de Landovskis Forge et de son projet vedette.
+- [Étude de cas Cityloom](https://landovskisforge.ca/fr/projects/cityloom/): Ce qu'est Cityloom, ses quatre interfaces, son architecture, ce qui est ouvert et son état d'avancement (début de parcours; les données du catalogue sont des valeurs fictives).
+- [English](https://landovskisforge.ca/llms.txt): Ce fichier en anglais.
+
+## Source
+
+- [Cityloom sur GitHub](https://github.com/alandovskis/cityloom): Code source de Cityloom, écrit en Rust et compilé en WebAssembly avec Leptos.
+- [Alex Landovskis sur GitHub](https://github.com/alandovskis): Profil et autres dépôts.
+
+## Optional
+
+- [Plan du site](https://landovskisforge.ca/sitemap.xml): Toutes les pages du site, dans les deux langues.
+- [Fil Atom](https://landovskisforge.ca/fr/atom.xml): Mises à jour du site.

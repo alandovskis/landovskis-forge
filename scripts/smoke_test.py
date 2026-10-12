@@ -124,8 +124,9 @@ def main(public):
         if "projects" not in name:
             if 'id="other"' not in path.read_text(encoding="utf-8"):
                 problems.append(f"{name}: missing #other section")
-            if "https://github.com/alandovskis/ansible" not in pages[name].hrefs:
-                problems.append(f"{name}: no link to the ansible repository")
+            for repo in ("ansible", "ai-plugins"):
+                if f"https://github.com/alandovskis/{repo}" not in pages[name].hrefs:
+                    problems.append(f"{name}: no link to the {repo} repository")
         for tag in re.findall(r"<img[^>]*>", path.read_text(encoding="utf-8")):
             if "width=" not in tag or "height=" not in tag or "alt=" not in tag:
                 problems.append(f"{name}: <img> without width, height and alt: {tag[:60]}")
